@@ -1,26 +1,28 @@
 # daily_reminder.py
+def daily_reminder():
+    # Get user input
+    task = input("Enter your task: ").strip()
+    while not task:
+        task = input("Task cannot be empty. Enter your task: ").strip()
+    
+    priority = input("Priority (high/medium/low): ").strip().lower()
+    while priority not in ['high', 'medium', 'low']:
+        priority = input("Invalid priority. Enter high/medium/low: ").strip().lower()
+    
+    time_bound = input("Is it time-bound? (yes/no): ").strip().lower()
+    while time_bound not in ['yes', 'no']:
+        time_bound = input("Please answer yes/no: ").strip().lower()
 
-# Prompt for a single task
-task = input("Enter your task: ")
-priority = input("Priority (high/medium/low): ").lower()
-time_bound = input("Is it time-bound? (yes/no): ").lower()
+    # Process and display reminder
+    urgency = "that requires immediate attention today!" if time_bound == 'yes' else ""
+    
+    match priority:
+        case 'high':
+            print(f"Reminder: '{task}' is a high priority task {urgency}")
+        case 'medium':
+            print(f"Note: '{task}' is a medium priority task {'to complete today.' if urgency else 'for this week.'}")
+        case 'low':
+            print(f"Note: '{task}' is a low priority task {'with a deadline.' if urgency else 'for free time.'}")
 
-# Match Case statement to react based on priority
-match priority:
-    case "high":
-        reminder = f"'{task}' is a high priority task"
-    case "medium":
-        reminder = f"'{task}' is a medium priority task"
-    case "low":
-        reminder = f"'{task}' is a low priority task"
-    case _:
-        reminder = f"'{task}' has an unknown priority level"
-
-# Use if statement to check time sensitivity
-if time_bound == "yes":
-    reminder += " that requires immediate attention today!"
-else:
-    reminder += ". Consider completing it when you have free time."
-
-# Provide and print customized reminder
-print("\nReminder:", reminder)
+if __name__ == "__main__":
+    daily_reminder()
