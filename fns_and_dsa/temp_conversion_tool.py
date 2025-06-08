@@ -1,9 +1,22 @@
-F,C=5/9,9/5
-def f2c(f):return (f-32)*F
-def c2f(c):return c*C+32
+# Global conversion factors
+FAHRENHEIT_TO_CELSIUS = 5/9
+CELSIUS_TO_FAHRENHEIT = 9/5
 
-try:
-    t=float(input("Temp: "))
-    u=input("(C/F): ").upper()
-    print(f"{t}{u} = {c2f(t):.1f}F"if u=='C'else f"{t}{u} = {f2c(t):.1f}C"if u=='F'else"Invalid unit")
-except ValueError:print("Invalid number")
+def convert_to_celsius(f): return (f-32)*FAHRENHEIT_TO_CELSIUS
+def convert_to_fahrenheit(c): return c*CELSIUS_TO_FAHRENHEIT+32
+
+def main():
+    try:
+        temp = float(input("Enter temperature: "))
+        unit = input("Celsius or Fahrenheit (C/F): ").upper()
+        if unit == 'C':
+            print(f"{temp}°C = {convert_to_fahrenheit(temp):.1f}°F")
+        elif unit == 'F':
+            print(f"{temp}°F = {convert_to_celsius(temp):.1f}°C")
+        else:
+            print("Invalid unit. Please enter C or F.")
+    except ValueError:
+        print("Invalid temperature. Please enter a numeric value.")
+
+if __name__ == "__main__":
+    main()
