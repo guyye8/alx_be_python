@@ -6,30 +6,35 @@ def display_menu():
 
 def main():
     shopping_list = []
+
     while True:
         display_menu()
-        choice = input("Enter your choice: ").strip()
-
-        if choice == '1':
-            item = input("Enter the item to add: ").strip()
-            shopping_list.append(item)
-            print(f"'{item}' added.")
-        elif choice == '2':
-            item = input("Enter the item to remove: ").strip()
-            if item in shopping_list:
-                shopping_list.remove(item)
-                print(f"'{item}' removed.")
+        try:
+            choice = int(input("Enter your choice: "))
+            if choice == 1:
+                item = input("Item to add: ").strip()
+                shopping_list.append(item)
+                print(f"'{item}' added.")
+            elif choice == 2:
+                item = input("Item to remove: ").strip()
+                if item in shopping_list:
+                    shopping_list.remove(item)
+                    print(f"'{item}' removed.")
+                else:
+                    print(f"'{item}' not found.")
+            elif choice == 3:
+                if shopping_list:
+                    for i, item in enumerate(shopping_list, 1):
+                        print(f"{i}. {item}")
+                else:
+                    print("List is empty.")
+            elif choice == 4:
+                print("Goodbye!")
+                break
             else:
-                print(f"'{item}' not found.")
-        elif choice == '3':
-            print("Shopping list:" if shopping_list else "List is empty.")
-            for i, item in enumerate(shopping_list, 1):
-                print(f"{i}. {item}")
-        elif choice == '4':
-            print("Goodbye!")
-            break
-        else:
-            print("Invalid choice. Try again.")
+                print("Invalid choice.")
+        except ValueError:
+            print("Please enter a number.")
 
 if __name__ == "__main__":
     main()
