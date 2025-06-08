@@ -1,8 +1,11 @@
 # shopping_list_manager.py
 
 def display_menu():
-    print("\nShopping List Manager")
-    print("1. Add Item\n2. Remove Item\n3. View List\n4. Exit")
+    print("\n🛒 Shopping List Manager 🛒")
+    print("1. Add Item")
+    print("2. Remove Item")
+    print("3. View List")
+    print("4. Exit")
 
 def main():
     shopping_list = []
@@ -10,31 +13,35 @@ def main():
     while True:
         display_menu()
         try:
-            choice = int(input("Enter your choice: "))
+            choice = int(input("Choose an option (1-4): ").strip())
             if choice == 1:
-                item = input("Item to add: ").strip()
-                shopping_list.append(item)
-                print(f"'{item}' added.")
+                item = input("Add item: ").strip()
+                if item:
+                    shopping_list.append(item)
+                    print(f"✅ '{item}' added.")
+                else:
+                    print("⚠️ Item name cannot be empty.")
             elif choice == 2:
-                item = input("Item to remove: ").strip()
+                item = input("Remove item: ").strip()
                 if item in shopping_list:
                     shopping_list.remove(item)
-                    print(f"'{item}' removed.")
+                    print(f"❌ '{item}' removed.")
                 else:
-                    print(f"'{item}' not found.")
+                    print(f"❓ '{item}' not found.")
             elif choice == 3:
                 if shopping_list:
+                    print("\n📝 Your Shopping List:")
                     for i, item in enumerate(shopping_list, 1):
                         print(f"{i}. {item}")
                 else:
-                    print("List is empty.")
+                    print("🛒 Your shopping list is empty.")
             elif choice == 4:
-                print("Goodbye!")
+                print("👋 Goodbye! Happy shopping!")
                 break
             else:
-                print("Invalid choice.")
+                print("⚠️ Invalid choice. Please enter a number from 1 to 4.")
         except ValueError:
-            print("Please enter a number.")
+            print("❗ Please enter a valid number.")
 
 if __name__ == "__main__":
     main()
