@@ -1,11 +1,14 @@
 def perform_operation(num1, num2, operation):
-    op = operation.lower()
-    if op == 'add':
+    operation = operation.lower().strip()
+    
+    if operation == 'add':
         return num1 + num2
-    if op == 'subtract':
+    elif operation == 'subtract':
         return num1 - num2
-    if op == 'multiply':
+    elif operation == 'multiply':
         return num1 * num2
-    if op == 'divide':
-        return None if num2 == 0 else num1 / num2
+    elif operation == 'divide':
+        if num2 == 0:
+            return "Error: Division by zero"
+        return num1 / num2
     return None
